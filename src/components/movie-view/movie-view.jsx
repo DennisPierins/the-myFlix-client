@@ -42,7 +42,7 @@ export class MovieView extends React.Component {
           </div>
         </section>
         <div className="back-button">
-          <a href="/"><button className="back-button">Back</button></a>
+          <a href="/"><Button className="back-button" variant="secondary">Back</Button></a>
         </div>
       </div>
     );

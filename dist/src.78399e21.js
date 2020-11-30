@@ -34136,6 +34136,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
+var _axios = _interopRequireDefault(require("axios"));
+
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
@@ -34169,14 +34171,29 @@ function LoginView(props) {
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       password = _useState4[0],
-      setPassword = _useState4[1]; // Allows login with random credentials for existing user, no functionality for new users yet
+      setPassword = _useState4[1]; // // Allows login with random credentials for existing user, no functionality for new users yet
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(username, password);
+  //   // Send a request to the server for authentication then call props.onLoggedIn(username)
+  //   props.onLoggedIn(username);
+  // };
+  // Requesting server for authentication
 
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    console.log(username, password); // Send a request to the server for authentication then call props.onLoggedIn(username)
 
-    props.onLoggedIn(username);
+    _axios.default.post('https://themyflixapi.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    }).then(function (response) {
+      var data = response.data;
+      props.onLoggedIn(data);
+      console.log('You succesfully logged in');
+    }).catch(function (e) {
+      console.log('No such user');
+    });
   };
 
   return _react.default.createElement("div", {
@@ -34218,7 +34235,7 @@ LoginView.propTypes = {
   }),
   onLoggedIn: _propTypes.default.func.isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/registration-view/registration-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/registration-view/registration-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34736,8 +34753,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "back-button"
       }, _react.default.createElement("a", {
         href: "/"
-      }, _react.default.createElement("button", {
-        className: "back-button"
+      }, _react.default.createElement(_Button.default, {
+        className: "back-button",
+        variant: "secondary"
       }, "Back"))));
     }
   }]);
@@ -34893,6 +34911,8 @@ var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
 
 var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
+var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -34949,21 +34969,31 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     };
     return _this;
   } // One of the "hooks" available in a React Component
+  // componentDidMount() {
+  //   axios.get('https://themyflixapi.herokuapp.com/movies')
+  //     .then(response => {
+  //       // Assign the result to the state
+  //       this.setState({
+  //         movies: response.data
+  //       });
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
 
 
   _createClass(MainView, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      var accessToken = localStorage.getItem('token');
 
-      _axios.default.get('https://themyflixapi.herokuapp.com/movies/').then(function (response) {
-        // Assign the result to the state
-        _this2.setState({
-          movies: response.data
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem('user')
         });
-      }).catch(function (error) {
-        console.log(error);
-      });
+        this.getMovies(accessToken);
+      }
     } // When a movie is clicked, this function is invoked and updates the state of the 'selectedMovie' property to that movie
 
   }, {
@@ -34972,14 +35002,44 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       this.setState({
         selectedMovie: movie
       });
+    } // Getting all the movies by passing bearer authorization in the header of the HTTP requests
+
+  }, {
+    key: "getMovies",
+    value: function getMovies(token) {
+      var _this2 = this;
+
+      _axios.default.get('https://themyflixapi.herokuapp.com/movies', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        // Assign the result to the state
+        _this2.setState({
+          movies: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
     } // When a user succesfully logs in, this function updates the 'user' property in state to that particular user
 
   }, {
     key: "onLoggedIn",
-    value: function onLoggedIn(user) {
+    value: function onLoggedIn(authData) {
+      console.log(authData);
       this.setState({
-        user: user
+        user: authData.user.Username
       });
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
+    } // This function logs out the user by removing token & user from the localStorage
+
+  }, {
+    key: "onLogOut",
+    value: function onLogOut() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
     }
   }, {
     key: "render",
@@ -35004,7 +35064,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       return _react.default.createElement("div", {
         className: "main-view"
-      }, _react.default.createElement(_Container.default, null, _react.default.createElement(_Row.default, null, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
+      }, _react.default.createElement(_Button.default, {
+        variant: "primary",
+        type: "submit",
+        className: "logout-button",
+        onClick: this.onLogOut
+      }, "Log Out"), _react.default.createElement(_Container.default, null, _react.default.createElement(_Row.default, null, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie
       }) : movies.map(function (movie) {
         return _react.default.createElement(_Col.default, {
@@ -35025,7 +35090,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js"}],"index.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"index.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -35119,7 +35184,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50626" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56812" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

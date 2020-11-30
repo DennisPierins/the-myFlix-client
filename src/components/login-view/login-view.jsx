@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -10,12 +11,29 @@ export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // Allows login with random credentials for existing user, no functionality for new users yet
+  // // Allows login with random credentials for existing user, no functionality for new users yet
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(username, password);
+  //   // Send a request to the server for authentication then call props.onLoggedIn(username)
+  //   props.onLoggedIn(username);
+  // };
+
+  // Requesting server for authentication
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    // Send a request to the server for authentication then call props.onLoggedIn(username)
-    props.onLoggedIn(username);
+    axios.post('https://themyflixapi.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    })
+      .then(response => {
+        const data = response.data;
+        props.onLoggedIn(data);
+        console.log('You succesfully logged in')
+      })
+      .catch(e => {
+        console.log('No such user')
+      });
   };
 
   return (
