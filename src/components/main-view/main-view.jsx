@@ -11,6 +11,7 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
+import { ProfileUpdate } from '../profile-update/profile-update';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -18,6 +19,8 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+
+import './main-view.scss';
 
 // class MainView extends React.Component {
 //   constructor() {
@@ -142,19 +145,17 @@ export class MainView extends React.Component {
             return movies.map(m => <MovieCard key={m._id} movie={m} />
             )
           }} />
-          <Route exact path="/register" render={() => <RegistrationView />} />
+          <Route path="/register" render={() => <RegistrationView />} />
           <Route path="/movies/:movieId" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
           <Route path="/directors/:name" render={({ match }) => {
             if (!movies) return <div className="main-view" />;
             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
-          }
-          } />
+          }} />
           <Route path="/genres/:name" render={({ match }) => {
             if (!movies) return <div className="main-view" />;
             return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} />
-          }
-          } />
-          <Route path="/users/:username" render={() => <ProfileView movies={movies} />
+          }} />
+          <Route exact path="/users/:Username" render={() => <ProfileView movies={movies} />
           } />
           <Route exact path="/users/:Username/update" render={() =>
             <ProfileUpdate movies={movies} />} />

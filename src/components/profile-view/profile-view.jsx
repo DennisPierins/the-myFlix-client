@@ -51,7 +51,7 @@ export class ProfileView extends React.Component {
   deleteUser(token) {
     const userId = localStorage.getItem('user');
     if (!confirm('This will delete your myFlix profile. Are you sure?')) return;
-    axios.delete(`https://themyflixapi.herokuapp.com/users/${userId}`, {
+    axios.delete(`https://themyflixapi.herokuapp.com/users/:username`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((res) =>
@@ -107,11 +107,11 @@ export class ProfileView extends React.Component {
           <h2 className='favorite-movies-title'>Your Favorite Movies</h2>
           {FavoriteMoviesList.map((movie) => {
             return (
-              <Card key={movie._.id} style={{ width: '15rem' }} className="favoite-movies">
+              <Card key={movie._id} style={{ width: '15rem' }} className="favorite-movies">
                 <Card.Img variant='top' src={movie.ImagePath} />
                 <Card.Body>
-                  <Link to={'/movies/${movie._id}'}>
-                    <Button variant='link' className='fav-movie-info'>Movie Info</Button>
+                  <Link to={`/movies/${movie._id}`}>
+                    <Button variant='link' className='fav-movie-info'>Movie Details</Button>
                   </Link>
                   <Button variant='link' className='fav-movie-remove' onClick={() => this.deleteFavoriteMovie(movie)}>Remove Movie</Button>
                 </Card.Body>

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import { RegistrationView } from '../registration-view/registration-view';
+
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 

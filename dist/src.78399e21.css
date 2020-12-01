@@ -4,6 +4,19 @@ body {
   font-family: montserrat;
 }
 
+.register-button {
+  margin: 20px;
+}
+
+.register-button-cancel {
+  margin: 20px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #FCE205;
+  font-family: montserrat;
+}
+
 h2 {
   font-size: 300%;
   text-align: center;
@@ -65,6 +78,11 @@ body {
 
 .profile-go-back-button {
   margin: 20px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #FCE205;
+  font-family: montserrat;
 }
 .my-flix {
   color: steelblue;
