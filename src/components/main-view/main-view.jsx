@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -9,11 +10,14 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
+import { ProfileView } from '../profile-view/profile-view';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 // class MainView extends React.Component {
 //   constructor() {
@@ -122,15 +126,22 @@ export class MainView extends React.Component {
     return (
       <Router>
         <div className="main-view">
-          <Container>
-            <Row className="main-view-row">
-              <Route exact path="/" render={() => {
-                if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-                return movies.map(m => <MovieCard key={m._id} movie={m} />
-                )
-              }} />
-            </Row>
-          </Container>
+          <Navbar bg="light" expand="lg">
+            <Navbar.Brand as={Link} to="/">myFlix</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                <Nav.Link as={Link} to="/users/:Username">Profile</Nav.Link>
+              </Nav>
+              <Button onClick={this.onLogOut} variant="dark" type="submit" className="button log-out-button">Log Out</Button>
+            </Navbar.Collapse>
+          </Navbar>
+          <Route exact path="/" render={() => {
+            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+            return movies.map(m => <MovieCard key={m._id} movie={m} />
+            )
+          }} />
           <Route exact path="/register" render={() => <RegistrationView />} />
           <Route path="/movies/:movieId" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
           <Route path="/directors/:name" render={({ match }) => {
@@ -143,6 +154,11 @@ export class MainView extends React.Component {
             return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} />
           }
           } />
+          <Route path="/users/:username" render={() => <ProfileView movies={movies} />
+          } />
+          <Route exact path="/users/:Username/update" render={() =>
+            <ProfileUpdate movies={movies} />} />
+          <Route path="/logout" render={() => <LoginView />} />
         </div>
       </Router>
     );

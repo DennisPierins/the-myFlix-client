@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -49,8 +50,10 @@ export function LoginView(props) {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter Password" />
         </Form.Group>
-
         <Button variant="primary" type="submit" className="login-button" onClick={handleSubmit}>Submit</Button>
+        <Link to={"/register"}>
+          <Button variant="success" className="button-register ml-1">Register</Button>
+        </Link>
       </Form>
     </div>
   );
