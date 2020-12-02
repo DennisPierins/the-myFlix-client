@@ -22,7 +22,7 @@ export class DirectorView extends React.Component {
 
     return (
       <div className='director-view'>
-        <Card style={{ width: '24rem' }} className='director-card'>
+        <Card style={{ width: '30rem' }} className='director-card'>
           <Card.Body>
             <Card.Title className='director-name'>{director.Name}</Card.Title>
             <Card.Text>Birthdate: {director.Birth}</Card.Text>

@@ -44,7 +44,7 @@ export function ProfileUpdate(props) {
 
   return (
     <div className="profile-update">
-      <h2>Update your myFlix profile</h2>
+      <h2>Update Your Profile</h2>
 
       <Form className="update-form">
         <Form.Group controlId="formBasicUsername" className="update-item">

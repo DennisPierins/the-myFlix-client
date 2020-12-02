@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import './profile-view.scss';
 
@@ -86,30 +88,32 @@ export class ProfileView extends React.Component {
 
     return (
       <Container>
-        <h2 className="profile-title">Your Profile</h2>
-        <Card style={{ width: '50rem' }} className="profile-view">
-          <Card.Body>
-            <Card.Text className='profile-text'>Username: {this.state.Username}</Card.Text>
-            <Card.Text className='profile-text'>Email: {this.state.Email}</Card.Text>
-            <Card.Text className='profile-text'>Birthday: {this.state.Birthday}</Card.Text>
-            <div className='profile-buttons'>
-              <Link to={'/users/:userId/update'}>
-                <Button variant="warning" className='update-profile-button'>Update Profile</Button>
-              </Link>
-              <Button variant='danger' onClick={() => this.deleteUser()} className='delete-profile-button'>Delete Profile</Button>
-              <Link to={'/'}>
-                <Button className='profile-go-back-button' variant='secondary'>Go Back</Button>
-              </Link>
-            </div>
-          </Card.Body>
-        </Card>
+        <Container>
+          <h2 className="profile-title">Your Profile</h2>
+          <Card style={{ width: '50rem' }} className="profile-view">
+            <Card.Body>
+              <Card.Text className='profile-text'>Username: {this.state.Username}</Card.Text>
+              <Card.Text className='profile-text'>Email: {this.state.Email}</Card.Text>
+              <Card.Text className='profile-text'>Birthday: {this.state.Birthday}</Card.Text>
+              <div className='profile-buttons'>
+                <Link to={'/users/:userId/update'}>
+                  <Button variant="success" className='update-profile-button'>Update Profile</Button>
+                </Link>
+                <Button variant='danger' onClick={() => this.deleteUser()} className='delete-profile-button'>Delete Profile</Button>
+                <Link to={'/'}>
+                  <Button className='profile-go-back-button' variant='secondary'>Go Back</Button>
+                </Link>
+              </div>
+            </Card.Body>
+          </Card>
+        </Container>
         <Container>
           <h2 className='favorite-movies-title'>Your Favorite Movies</h2>
           {FavoriteMoviesList.map((movie) => {
             return (
-              <Card key={movie._id} style={{ width: '15rem' }} className="favorite-movies">
-                <Card.Img variant='top' src={movie.ImagePath} />
-                <Card.Body>
+              <Card key={movie._id} style={{ width: '15rem' }} className="favorite-movies mt-3 border border-dark rounded">
+                <Card.Img className="favorite-movies-images" variant='top' src={movie.ImagePath} width={300} height={400} />
+                <Card.Body className="favorite-movies-card-body">
                   <Link to={`/movies/${movie._id}`}>
                     <Button variant='link' className='fav-movie-info'>Movie Details</Button>
                   </Link>

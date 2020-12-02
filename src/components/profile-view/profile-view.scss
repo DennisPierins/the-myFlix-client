@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
-  background-color: #FCE205;
+  background-color: #659dbd;
   font-family: montserrat;
 }
 
+.favorite-movies {
+  display: inline-flex;
+  margin: 20px;
+}
+
 .profile-view {
-  background-color: #cccdd8;
+  background-color: #eeedf5;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -23,4 +28,8 @@ body {
 
 .profile-go-back-button {
   margin: 20px;
+}
+
+.favorite-movies-card-body {
+  background-color: #eeedf5;
 }

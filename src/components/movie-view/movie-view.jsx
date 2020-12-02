@@ -21,14 +21,11 @@ export class MovieView extends React.Component {
 
     return (
       <div className="movie-view">
+        <h2>{movie.Title}</h2>
         <section className="movie-poster-section">
           <img className="movie-poster" src={movie.ImagePath} width={300} height={450} />
         </section>
         <section className="movie-info-section">
-          <div className="movie-title">
-            <span className="label">Title: </span>
-            <span className="value">{movie.Title}</span>
-          </div>
           <div className="movie-description">
             <span className="label">Description: </span>
             <span className="value">{movie.Description}</span>

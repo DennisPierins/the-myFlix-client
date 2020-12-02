@@ -13,12 +13,19 @@ body {
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
-  background-color: #FCE205;
+  background-color: #659dbd;
   font-family: montserrat;
 }
 
 h2 {
   font-size: 300%;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 120%;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -30,16 +37,21 @@ form {
 }
 
 .login-button {
-  background-color: #23395d;
+  margin: auto;
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
-  background-color: #FCE205;
+  background-color: #659dbd;
   font-family: montserrat;
 }
+
+.movie-card {
+  display: inline-flex;
+  margin: 20px;
+}
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
-  background-color: #FCE205;
+  background-color: #659dbd;
   font-family: montserrat;
 }
 
@@ -47,21 +59,31 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.movie-info-section {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  align-items: center;
+  margin: 20px;
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
-  background-color: #FCE205;
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #659dbd;
   font-family: montserrat;
 }
 
+.favorite-movies {
+  display: inline-flex;
+  margin: 20px;
+}
+
 .profile-view {
-  background-color: #cccdd8;
+  background-color: #eeedf5;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -79,9 +101,22 @@ body {
 .profile-go-back-button {
   margin: 20px;
 }
+
+.favorite-movies-card-body {
+  background-color: #eeedf5;
+}
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
-  background-color: #FCE205;
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+
+.update-profile-buttons {
+  text-align: center;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #659dbd;
   font-family: montserrat;
 }
 .my-flix {

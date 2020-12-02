@@ -129,7 +129,7 @@ export class MainView extends React.Component {
     return (
       <Router>
         <div className="main-view">
-          <Navbar bg="light" expand="lg">
+          <Navbar bg="dark" variant="dark" expand="lg">
             <Navbar.Brand as={Link} to="/">myFlix</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

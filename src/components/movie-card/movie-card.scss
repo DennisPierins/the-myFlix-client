@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
-  background-color: #FCE205;
+  background-color: #659dbd;
   font-family: montserrat;
+}
+
+.movie-card {
+  display: inline-flex;
+  margin: 20px;
 }
