@@ -61,15 +61,57 @@ body {
   align-items: center;
   margin: 20px;
 }
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-body {
-  background-color: #659dbd;
-  font-family: montserrat;
+
+.movie-info-section {
+  margin-top: 50px;
+  margin-left: 250px;
+}
+
+.movie-description {
+  width: 75%;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  font-size: 120%;
+}
+
+.movie-genre {
+  width: 75%;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.movie-director {
+  width: 75%;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.director-button {
+  color: #e4f30e;
+}
+
+.genre-button {
+  color: #e4f30e;
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
   background-color: #659dbd;
   font-family: montserrat;
+}
+
+.director-card {
+  margin: auto;
+  margin-top: 100px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+
+.genre-card {
+  margin: auto;
+  margin-top: 100px;
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {

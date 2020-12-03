@@ -70,10 +70,12 @@ export class ProfileView extends React.Component {
   // }
 
   deleteUser() {
-    axios.delete(`https://themyflixapi.herokuapp.com/users/${localStorage.getItem('user')}`,
-      {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      })
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('user');
+
+    axios.delete(`https://themyflixapi.herokuapp.com/users/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
       .then(res => {
         alert('Do you really want to delete your account?')
       })

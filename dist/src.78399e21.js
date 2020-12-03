@@ -37258,7 +37258,7 @@ function RegistrationView(props) {
       Birthday: birthday
     }).then(function (response) {
       var data = response.data;
-      console.log(data);
+      console.log('Your profile was successfully made');
       window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
     }).catch(function (e) {
       console.log('Error registering the user');
@@ -37838,6 +37838,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Genre:"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_Button.default, {
+        className: "genre-button",
         variant: "link"
       }, movie.Genre.Name))), _react.default.createElement("div", {
         className: "movie-director"
@@ -37846,6 +37847,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Director:"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_Button.default, {
+        className: "director-button",
         variant: "link"
       }, movie.Director.Name))), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
@@ -38312,9 +38314,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function deleteUser() {
       var _this3 = this;
 
-      _axios.default.delete("https://themyflixapi.herokuapp.com/users/".concat(localStorage.getItem('user')), {
+      var token = localStorage.getItem('token');
+      var userId = localStorage.getItem('user');
+
+      _axios.default.delete("https://themyflixapi.herokuapp.com/users/".concat(userId), {
         headers: {
-          Authorization: "Bearer ".concat(localStorage.getItem('token'))
+          Authorization: "Bearer ".concat(token)
         }
       }).then(function (res) {
         alert('Do you really want to delete your account?');
@@ -41576,7 +41581,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49910" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59487" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
