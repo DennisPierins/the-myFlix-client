@@ -22,9 +22,11 @@ export class ProfileView extends React.Component {
       Email: null,
       Birthday: null,
       FavoriteMovies: [],
+      movies: []
     };
   }
 
+  // Gets user data from API
   getUser(token) {
     const userId = localStorage.getItem('user');
 
@@ -45,21 +47,52 @@ export class ProfileView extends React.Component {
       });
   }
 
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeitem('user');
+    window.open('/', '_self');
+  }
+
   componentDidMount() {
     const accessToken = localStorage.getItem('token');
     this.getUser(accessToken);
   }
 
-  deleteUser(token) {
-    const userId = localStorage.getItem('user');
-    if (!confirm('This will delete your myFlix profile. Are you sure?')) return;
-    axios.delete(`https://themyflixapi.herokuapp.com/users/:username`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then((res) =>
-        console.log(res))
-    localStorage.removeItem('token');
-    window.open('/', '_self');
+  // deleteUser() {
+  //   if (!confirm('Do you really want to delete your profile?')) return;
+  //   axios.delete(`https://themyflixapi.herokuapp.com/users/${localStorage.getItem('user')}`, {
+  //     headers: { Authorization: `Bearer ${localStorage.getItem('token')};` }
+  //   })
+  //     .then((res) =>
+  //       console.log(res))
+  //   alert('Your myFlix account has been deleted')
+  //   this.onLoggedOut();
+  // }
+
+  deleteUser() {
+    axios.delete(`https://themyflixapi.herokuapp.com/users/${localStorage.getItem('user')}`,
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(res => {
+        alert('Do you really want to delete your account?')
+      })
+      .then(res => {
+        alert('Account was successfully deleted')
+      })
+      .then(res => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+
+        this.setState({
+          user: null
+
+        });
+        window.open('/', '_self');
+      })
+      .catch(e => {
+        alert('Account could not be deleted ' + e)
+      });
   }
 
   deleteFavoriteMovie(movie) {
@@ -73,12 +106,6 @@ export class ProfileView extends React.Component {
         console.log(res);
         this.componentDidMount();
       });
-  }
-
-  onLoggedOut() {
-    localStorage.removeItem('token');
-    localStorage.removeitem('user');
-    window.open('/', '_self');
   }
 
   render() {

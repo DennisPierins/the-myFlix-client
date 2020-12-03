@@ -38254,10 +38254,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       Password: null,
       Email: null,
       Birthday: null,
-      FavoriteMovies: []
+      FavoriteMovies: [],
+      movies: []
     };
     return _this;
-  }
+  } // Gets user data from API
+
 
   _createClass(ProfileView, [{
     key: "getUser",
@@ -38283,32 +38285,58 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "onLoggedOut",
+    value: function onLoggedOut() {
+      localStorage.removeItem('token');
+      localStorage.removeitem('user');
+      window.open('/', '_self');
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var accessToken = localStorage.getItem('token');
       this.getUser(accessToken);
-    }
+    } // deleteUser() {
+    //   if (!confirm('Do you really want to delete your profile?')) return;
+    //   axios.delete(`https://themyflixapi.herokuapp.com/users/${localStorage.getItem('user')}`, {
+    //     headers: { Authorization: `Bearer ${localStorage.getItem('token')};` }
+    //   })
+    //     .then((res) =>
+    //       console.log(res))
+    //   alert('Your myFlix account has been deleted')
+    //   this.onLoggedOut();
+    // }
+
   }, {
     key: "deleteUser",
-    value: function deleteUser(token) {
-      var userId = localStorage.getItem('user');
-      if (!confirm('This will delete your myFlix profile. Are you sure?')) return;
+    value: function deleteUser() {
+      var _this3 = this;
 
-      _axios.default.delete("https://themyflixapi.herokuapp.com/users/:username", {
+      _axios.default.delete("https://themyflixapi.herokuapp.com/users/".concat(localStorage.getItem('user')), {
         headers: {
-          Authorization: "Bearer ".concat(token)
+          Authorization: "Bearer ".concat(localStorage.getItem('token'))
         }
       }).then(function (res) {
-        return console.log(res);
-      });
+        alert('Do you really want to delete your account?');
+      }).then(function (res) {
+        alert('Account was successfully deleted');
+      }).then(function (res) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
 
-      localStorage.removeItem('token');
-      window.open('/', '_self');
+        _this3.setState({
+          user: null
+        });
+
+        window.open('/', '_self');
+      }).catch(function (e) {
+        alert('Account could not be deleted ' + e);
+      });
     }
   }, {
     key: "deleteFavoriteMovie",
     value: function deleteFavoriteMovie(movie) {
-      var _this3 = this;
+      var _this4 = this;
 
       var token = localStorage.getItem('token');
       var userId = localStorage.getItem('user');
@@ -38320,20 +38348,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }).then(function (res) {
         console.log(res);
 
-        _this3.componentDidMount();
+        _this4.componentDidMount();
       });
-    }
-  }, {
-    key: "onLoggedOut",
-    value: function onLoggedOut() {
-      localStorage.removeItem('token');
-      localStorage.removeitem('user');
-      window.open('/', '_self');
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var movies = this.props.movies;
       var userFavoriteMovies = this.state.FavoriteMovies;
@@ -38363,7 +38384,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, "Update Profile")), _react.default.createElement(_Button.default, {
         variant: "danger",
         onClick: function onClick() {
-          return _this4.deleteUser();
+          return _this5.deleteUser();
         },
         className: "delete-profile-button"
       }, "Delete Profile"), _react.default.createElement(_reactRouterDom.Link, {
@@ -38397,7 +38418,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           variant: "link",
           className: "fav-movie-remove",
           onClick: function onClick() {
-            return _this4.deleteFavoriteMovie(movie);
+            return _this5.deleteFavoriteMovie(movie);
           }
         }, "Remove Movie")));
       })));
@@ -41331,6 +41352,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function onLogOut() {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      window.open('/', '_self');
     }
   }, {
     key: "render",
@@ -41554,7 +41576,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53968" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49910" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
