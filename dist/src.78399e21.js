@@ -41393,15 +41393,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_Nav.default.Link, {
         as: _reactRouterDom.Link,
         to: "/"
-      }, "Home"), _react.default.createElement(_Nav.default.Link, {
+      }, "Home"), user && _react.default.createElement("div", null, _react.default.createElement(_Nav.default.Link, {
         as: _reactRouterDom.Link,
         to: "/users/:Username"
-      }, "Profile")), _react.default.createElement(_Button.default, {
+      }, "Profile"))), user && _react.default.createElement("div", null, _react.default.createElement(_Button.default, {
         onClick: this.onLogOut,
         variant: "dark",
         type: "submit",
         className: "button log-out-button"
-      }, "Log Out"))), _react.default.createElement(_reactRouterDom.Route, {
+      }, "Log Out")))), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {
@@ -41581,7 +41581,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59487" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61954" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

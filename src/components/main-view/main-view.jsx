@@ -136,9 +136,13 @@ export class MainView extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to="/users/:Username">Profile</Nav.Link>
+                {user && (<div>
+                  <Nav.Link as={Link} to="/users/:Username">Profile</Nav.Link>
+                </div>)}
               </Nav>
-              <Button onClick={this.onLogOut} variant="dark" type="submit" className="button log-out-button">Log Out</Button>
+              {user && (<div>
+                <Button onClick={this.onLogOut} variant="dark" type="submit" className="button log-out-button">Log Out</Button>
+              </div>)}
             </Navbar.Collapse>
           </Navbar>
           <Route exact path="/" render={() => {
