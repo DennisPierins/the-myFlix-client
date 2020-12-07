@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
-  background-color: #FCE205;
+  background-color: #659dbd;
   font-family: montserrat;
 }
 
 h2 {
   font-size: 300%;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 120%;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -18,5 +25,5 @@ form {
 }
 
 .login-button {
-  background-color: #23395d;
+  margin: auto;
 }

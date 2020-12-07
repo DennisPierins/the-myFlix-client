@@ -4,8 +4,28 @@ body {
   font-family: montserrat;
 }
 
+.register-button {
+  margin: 20px;
+}
+
+.register-button-cancel {
+  margin: 20px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+
 h2 {
   font-size: 300%;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 120%;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -17,16 +37,21 @@ form {
 }
 
 .login-button {
-  background-color: #23395d;
+  margin: auto;
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
-  background-color: #FCE205;
+  background-color: #659dbd;
   font-family: montserrat;
 }
+
+.movie-card {
+  display: inline-flex;
+  margin: 20px;
+}
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
-  background-color: #FCE205;
+  background-color: #659dbd;
   font-family: montserrat;
 }
 
@@ -34,12 +59,114 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 20px;
+}
+
+.favorite-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 }
 
 .movie-info-section {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  align-items: center;
+  margin-top: 50px;
+  margin-left: 250px;
+}
+
+.movie-description {
+  width: 75%;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  font-size: 120%;
+}
+
+.movie-genre {
+  width: 75%;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.movie-director {
+  width: 75%;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.director-button {
+  color: #e4f30e;
+}
+
+.genre-button {
+  color: #e4f30e;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+
+.director-card {
+  margin: auto;
+  margin-top: 100px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+
+.genre-card {
+  margin: auto;
+  margin-top: 100px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+
+.favorite-movies {
+  display: inline-flex;
+  margin: 20px;
+}
+
+.profile-view {
+  background-color: #eeedf5;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.update-profile-button {
+  margin: 20px;
+}
+
+.delete-profile-button {
+  margin: 20px;
+}
+
+.profile-go-back-button {
+  margin: 20px;
+}
+
+.favorite-movies-card-body {
+  background-color: #eeedf5;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+
+.update-profile-buttons {
+  text-align: center;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  background-color: #659dbd;
+  font-family: montserrat;
 }
 .my-flix {
   color: steelblue;

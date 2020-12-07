@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+
+import './registration-view.scss';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -10,12 +14,22 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
 
-  // Allows login with random credentials for existing user, no functionality for new users yet
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log(username, password, email, birthday);
-    // Send a request to the server for authentication then call props.onLoggedIn(username)
-    props.onLoggedIn(username);
+    axios.post('https://themyflixapi.herokuapp.com/users', {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
+    })
+      .then(response => {
+        const data = response.data;
+        console.log('Your profile was successfully made');
+        window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+      })
+      .catch(e => {
+        console.log('Error registering the user')
+      });
   };
 
   return (
@@ -29,7 +43,7 @@ export function RegistrationView(props) {
 
         <Form.Group controlId="formBasicPassword" className="registration-form-group">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="New Password" />
+          <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Create Password" />
         </Form.Group>
 
         <Form.Group controlId="formBasicEmail" className="registration-form-group">
@@ -39,10 +53,12 @@ export function RegistrationView(props) {
 
         <Form.Group controlId="formBasicBirthday" className="registration-form-group">
           <Form.Label>Birthday</Form.Label>
-          <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} placeholder="Your Birthday - YYYY-MM-DD" />
+          <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} placeholder="Date of Birth DD/MM/YYYY" />
         </Form.Group>
-
         <Button variant="primary" type="submit" className="register-button" onClick={handleRegister}>Register</Button>
+        <Link to={"/"}>
+          <Button variant="secondary" className="register-button-cancel">Cancel</Button>
+        </Link>
       </Form>
     </div>
   );

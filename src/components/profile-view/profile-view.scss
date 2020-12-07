@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+
+.favorite-movies {
+  display: inline-flex;
+  margin: 20px;
+}
+
+.profile-view {
+  background-color: #eeedf5;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.update-profile-button {
+  margin: 20px;
+}
+
+.delete-profile-button {
+  margin: 20px;
+}
+
+.profile-go-back-button {
+  margin: 20px;
+}
+
+.favorite-movies-card-body {
+  background-color: #eeedf5;
+}
