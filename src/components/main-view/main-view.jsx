@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
