@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
 // This together with 'return <MainView/> will render MainView from within index.jsx
-import { MainView } from './components/main-view/main-view';
+import MainView from './components/main-view/main-view';
 
 import moviesApp from './reducers/reducers';
 
