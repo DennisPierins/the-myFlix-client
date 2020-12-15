@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
+  background-color: #659dbd;
+  font-family: montserrat;
+}
+
+.movie-card {
+  display: inline-flex;
+  margin: 20px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
   background-color: #FCE205;
   font-family: montserrat;
 }
@@ -38,16 +48,6 @@ form {
 
 .login-button {
   margin: auto;
-}
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-body {
-  background-color: #659dbd;
-  font-family: montserrat;
-}
-
-.movie-card {
-  display: inline-flex;
-  margin: 20px;
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
